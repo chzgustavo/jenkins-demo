@@ -1,23 +1,34 @@
 pipeline {
     agent any
+    
+    environment {
+        registry = "chzgustavo/node-helloworld"
+        registryCredential = 'docker_hub_login'
+        dockerImage = ''
+    }
 
     stages {
-        stage("build") {
+        stage("Test") {
             steps {
-                echo 'building the applications'
-                echo 'building the app'
+                echo 'test the app'
             }
         }
 
-        stage("test") {
+        stage("Build Docker Image") {
             steps {
-                echo 'testing the app'
+                script {
+                  dockerImage = docker.build(registry)
+                }  
             }
         }
 
-        stage("deploy") {
+        stage("Push docker image") {
             steps {
-                echo 'deploy the app'
+                script {
+                    docker.withRegistry('', registryCredential) {
+                    dockerImage.push("${env.BUILD_NUMBER}")
+                    dockerImage.push("latest")
+                }
             }
         }
     }
