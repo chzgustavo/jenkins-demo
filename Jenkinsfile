@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage("Test") {
             steps {
-                echo 'test the app'
+                echo 'test the apps'
             }
         }
 
         stage("Build Docker Image") {
             steps {
                 script {
-                  dockerImage = docker.build(registry)
+                  dockerImage = docker.build registry + ":latest"
                 }  
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
-                        dockerImage.push("latest")
+                        dockerImage.push()
                     }
                 }
             }
