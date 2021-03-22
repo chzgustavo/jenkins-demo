@@ -28,6 +28,7 @@ pipeline {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push("${env.BUILD_NUMBER}")
                         dockerImage.push("latest")
+                    }
                 }
             }
         }
@@ -38,7 +39,6 @@ pipeline {
         always {
             // se ejecuta siempre independientemente si sale bien o mal 
             echo 'always'
-
         }
         success {
             // se ejecuta si es ok pipeline
