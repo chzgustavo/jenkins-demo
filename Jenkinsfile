@@ -21,4 +21,17 @@ pipeline {
             }
         }
     }
+
+    post {
+        // se ejeucta al ultimo de la tuberia
+        always {
+            // se ejecuta siempre independientemente si sale bien o mal 
+        }
+        success {
+            // se ejecuta si es ok pipeline            
+        }
+        failure {
+            // se ejcuta si falla pipeline
+        }
+    }
 }

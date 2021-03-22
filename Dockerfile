@@ -1,7 +1,4 @@
-FROM node:13-alpine
-
-ENV MONGO_DB_USERNAME=admin \
-    MONGO_DB_PWD=password
+FROM node:alpine3.10
 
 RUN mkdir -p /home/app
 
@@ -13,6 +10,7 @@ WORKDIR /home/app
 # will execute npm install in /home/app because of WORKDIR
 RUN npm install
 
+EXPOSE 8000
 # no need for /home/app/server.js because of WORKDIR
 CMD ["node", "server.js"]
 
