@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
-                        dockerImage.push("${env.BUILD_NUMBER}")
+                        //dockerImage.push("${env.BUILD_NUMBER}")
                         dockerImage.push()
                     }
                 }
@@ -36,7 +36,7 @@ pipeline {
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
-                sh 'kubectl get ns'
+                sh 'docker images'
             }
         }
     }
