@@ -36,7 +36,7 @@ pipeline {
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
-                sh 'docker ps'
+                sh 'kubectl get all'
             }
         }
     }
