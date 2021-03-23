@@ -36,7 +36,7 @@ pipeline {
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
-                sh 'docker images'
+                sh 'docker ps'
             }
         }
     }
