@@ -36,7 +36,7 @@ pipeline {
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
-                sh 'kubectl get ns'
+                sh '/usr/local/bin/kubectl get ns'
             }
         }
     }
