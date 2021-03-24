@@ -36,7 +36,8 @@ pipeline {
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
-                sh 'pwd'
+                sh 'kubectl --kubeconfig /home/gustavo/.kube/config apply -f deployment.yaml'
+                sh 'kubectl --kubeconfig /home/gustavo/.kube/config apply -f service.yaml'
             }
         }
     }

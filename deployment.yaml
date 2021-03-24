@@ -21,4 +21,4 @@ spec:
         image: chzgustavo/node-helloworld:latest
         imagePullPolicy: IfNotPresent        
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
