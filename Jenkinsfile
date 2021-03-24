@@ -36,6 +36,9 @@ pipeline {
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
+                script {
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubeconfig")
+                }
             }
         }
     }
