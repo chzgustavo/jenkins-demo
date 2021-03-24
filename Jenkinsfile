@@ -37,7 +37,7 @@ pipeline {
             steps {
                 echo 'deploy the application'
                 script {
-                    kubernetesDeploy(kubeconfigId: 'minikube-kube-config', configs: 'deployment.yaml')
+                    kubernetesDeploy(kubeconfigId: 'kube-config-minikube', configs: 'deployment.yaml')
                 }
             }
         }
