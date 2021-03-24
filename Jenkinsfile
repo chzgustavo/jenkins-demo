@@ -32,11 +32,17 @@ pipeline {
                 }
             }
         }
+        
+        stage("Deploy in cluster") {
+            withKubeConfig([credentialsId: 'kubeconfig', serverUrl: 'https://192.168.49.2:8443']) {
+                sh 'kubectl get ns'
+            }
+        }
 
         stage("Deploy in cluster") {
             steps {
                 echo 'deploy the app'
-                sh 'kubectl get ns'
+                //sh 'kubectl get ns'
             }
         }
     }
