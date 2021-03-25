@@ -37,9 +37,9 @@ pipeline {
             
             steps {
                 echo 'deploy the app'
-                sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
+                //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
                 kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig-example',
+                    kubeconfigId: 'kube-config-mk',
                     configs: 'deployment.yaml'
                 )
             }
