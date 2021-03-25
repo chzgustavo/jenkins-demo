@@ -5,7 +5,7 @@ pipeline {
         registry = "chzgustavo/node-helloworld"
         registryCredential = 'docker_hub_login'
         dockerImage = ''
-        tag = "latest"
+        tag = "v0.0.1"
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
         stage("Build Docker Image") {
             steps {
                 script {
-                  dockerImage = docker.build registry + ":latest"
+                  dockerImage = docker.build registry + ":$tag"
                 }  
             }
         }
