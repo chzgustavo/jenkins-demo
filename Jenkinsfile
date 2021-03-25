@@ -5,6 +5,7 @@ pipeline {
         registry = "chzgustavo/node-helloworld"
         registryCredential = 'docker_hub_login'
         dockerImage = ''
+        tag = "latest"
     }
 
     stages {
@@ -37,11 +38,14 @@ pipeline {
             
             steps {
                 echo 'deploy the app'
-                //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
-                kubernetesDeploy(
-                    kubeconfigId: 'kube-config-mk',
-                    configs: 'deployment.yaml'
-                )
+                sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
+            }
+        }
+
+        stage("delete image local") {
+            
+            steps {
+                sh "docker rmi $registry:$tag"
             }
         }
     }
