@@ -34,14 +34,17 @@ pipeline {
         }
  
         stage("Deploy in cluster") {
+            
             steps {
-                echo 'deploy the appl'
-                sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
-                //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/config apply -f deployment.yaml'
-                //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/config apply -f service.yaml'
+                echo 'deploy the app'
+                //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
+                withKubeConfig([credentialsId: 'kubeconfig-example', serverUrl: 'https://192.168.49.2:8443']) {
+                    sh 'kubectl get ns'
+                }
             }
         }
     }
+
 
     post {
         // se ejeucta al ultimo de la tuberia
