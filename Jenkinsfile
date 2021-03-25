@@ -37,10 +37,11 @@ pipeline {
             
             steps {
                 echo 'deploy the app'
-                //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
-                withKubeConfig([credentialsId: 'kubeconfig-example', serverUrl: 'https://192.168.49.2:8443']) {
-                    sh 'kubectl get ns'
-                }
+                sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config apply -f ./'
+                kubernetesDeploy(
+                    kubeconfigId: 'kubeconfig-example	',
+                    configs: 'deployment.yaml'
+                )
             }
         }
     }
