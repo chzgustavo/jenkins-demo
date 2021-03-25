@@ -35,7 +35,7 @@ pipeline {
  
         stage("Deploy in cluster") {
             steps {
-                echo 'deploy the application'
+                echo 'deploy the appl'
                 sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/kubeconfig/config get ns'
                 //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/config apply -f deployment.yaml'
                 //sh 'kubectl --kubeconfig /home/gustavo/Documentos/kubernetes/kubernetes-ejemplos/config apply -f service.yaml'
